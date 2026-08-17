@@ -40,505 +40,166 @@
       pointer-events: none;
     }
 
-    .glow-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      transition: all 1s ease;
-    }
+    .glow-orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; transition: all 1s ease; }
     .orb1 { width: 500px; height: 500px; top: -100px; right: -100px; background: var(--accent-glow); opacity: 0.4; }
     .orb2 { width: 400px; height: 400px; bottom: -80px; left: -80px; background: var(--blue-dim); opacity: 0.5; }
     body.sleeping .orb1 { background: var(--warn-dim); opacity: 0.3; }
 
-    /* ── LAYOUT ── */
-    .app {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      grid-template-rows: auto 1fr;
-    }
+    .app { position: relative; z-index: 1; min-height: 100vh; display: grid; grid-template-columns: 340px 1fr; grid-template-rows: auto 1fr; }
 
-    /* ── LEFT PANEL ── */
-    .left-panel {
-      grid-column: 1;
-      grid-row: 1 / 3;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      padding: 40px 32px;
-      gap: 40px;
-      background: linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.4) 100%);
-      backdrop-filter: blur(8px);
-    }
+    .left-panel { grid-column: 1; grid-row: 1 / 3; border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 40px 32px; gap: 40px; background: linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.4) 100%); backdrop-filter: blur(8px); }
 
-    /* Header */
-    .brand .label {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .brand h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
+    .brand .label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .brand h1 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
     .brand h1 span { color: var(--accent); transition: color 0.6s; }
     body.sleeping .brand h1 span { color: var(--warn); }
 
-    /* Clock */
     .clock-block { text-align: left; }
-    .clock-time {
-      font-size: 52px;
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      color: var(--text);
-    }
-    .clock-time .colon {
-      opacity: 1;
-      animation: blink 1s step-end infinite;
-    }
+    .clock-time { font-size: 52px; font-weight: 300; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1; color: var(--text); }
+    .clock-time .colon { opacity: 1; animation: blink 1s step-end infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-    .clock-ampm {
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      margin-left: 4px;
-      font-weight: 500;
-      transition: color 0.6s;
-    }
+    .clock-ampm { font-size: 13px; color: var(--accent); letter-spacing: 0.15em; margin-left: 4px; font-weight: 500; transition: color 0.6s; }
     body.sleeping .clock-ampm { color: var(--warn); }
-    .clock-date {
-      font-size: 11px;
-      color: var(--text2);
-      letter-spacing: 0.1em;
-      margin-top: 6px;
-    }
+    .clock-date { font-size: 11px; color: var(--text2); letter-spacing: 0.1em; margin-top: 6px; }
 
-    /* Wake lock control */
     .wakelock-section { display: flex; flex-direction: column; gap: 16px; }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 2px;
-      border: 1px solid var(--border2);
-      background: var(--surface);
-      width: fit-content;
-    }
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--muted);
-      transition: background 0.4s;
-    }
-    .active-state .status-dot {
-      background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-      animation: pulseGreen 2s infinite;
-    }
-    @keyframes pulseGreen {
-      0%,100%{ box-shadow: 0 0 4px var(--accent); }
-      50%{ box-shadow: 0 0 12px var(--accent); }
-    }
-    .status-text {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text2);
-    }
+    .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 2px; border: 1px solid var(--border2); background: var(--surface); width: fit-content; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); transition: background 0.4s; }
+    .active-state .status-dot { background: var(--accent); box-shadow: 0 0 6px var(--accent); animation: pulseGreen 2s infinite; }
+    @keyframes pulseGreen { 0%,100%{ box-shadow: 0 0 4px var(--accent); } 50%{ box-shadow: 0 0 12px var(--accent); } }
+    .status-text { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text2); }
     .active-state .status-text { color: var(--accent); }
-
-    .uptime-line {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
+    .uptime-line { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
     .uptime-line span { color: var(--text2); font-variant-numeric: tabular-nums; }
-
-    .toggle-btn {
-      padding: 12px 0;
-      width: 100%;
-      border: 1.5px solid var(--accent);
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
+    .toggle-btn { padding: 12px 0; width: 100%; border: 1.5px solid var(--accent); background: var(--accent-dim); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
     .toggle-btn:hover { background: rgba(0,229,176,0.12); }
     body.sleeping .toggle-btn { border-color: var(--warn); background: var(--warn-dim); color: var(--warn); }
     body.sleeping .toggle-btn:hover { background: rgba(255,107,53,0.12); }
-
-    .method-tag {
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-    }
+    .method-tag { font-size: 9px; color: var(--muted); letter-spacing: 0.15em; }
     .method-tag span { color: var(--text2); }
 
-    /* Sessions */
     .stats-row { display: flex; gap: 20px; }
     .stat { flex: 1; padding: 12px; border: 1px solid var(--border); background: var(--surface); border-radius: 2px; }
     .stat-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
     .stat-value { font-size: 18px; font-weight: 300; color: var(--text); font-variant-numeric: tabular-nums; }
 
-    /* ── RIGHT PANEL ── */
-    .right-panel {
-      grid-column: 2;
-      grid-row: 1 / 3;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+    .right-panel { grid-column: 2; grid-row: 1 / 3; display: flex; flex-direction: column; overflow: hidden; }
 
-    /* Calendar header */
-    .cal-header {
-      padding: 32px 40px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
-    .cal-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-    }
+    .cal-header { padding: 32px 40px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+    .cal-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
     .cal-title-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text2); letter-spacing: 0.15em; margin-top: 2px; }
-
     .cal-actions { display: flex; gap: 10px; align-items: center; }
-    .icon-btn {
-      width: 32px; height: 32px;
-      border: 1px solid var(--border2);
-      background: var(--surface);
-      color: var(--text2);
-      border-radius: 2px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      transition: all 0.15s;
-    }
+    .icon-btn { width: 32px; height: 32px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-    .sign-in-btn {
-      padding: 8px 16px;
-      border: 1.5px solid var(--blue);
-      background: var(--blue-dim);
-      color: var(--blue);
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
+    .sign-in-btn { padding: 8px 16px; border: 1.5px solid var(--blue); background: var(--blue-dim); color: var(--blue); font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
     .sign-in-btn:hover { background: rgba(74,158,255,0.15); }
-    .sign-out-btn {
-      padding: 6px 12px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
+    .sign-out-btn { padding: 6px 12px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
     .sign-out-btn:hover { border-color: var(--warn); color: var(--warn); }
 
-    /* Calendar body */
-    .cal-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px 40px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .cal-body { flex: 1; overflow-y: auto; padding: 24px 40px 40px; display: flex; flex-direction: column; gap: 8px; }
     .cal-body::-webkit-scrollbar { width: 4px; }
     .cal-body::-webkit-scrollbar-track { background: transparent; }
     .cal-body::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-    /* Setup screen */
-    .setup-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      gap: 24px;
-      padding: 40px;
-      text-align: center;
-    }
+    .setup-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 24px; padding: 40px; text-align: center; }
     .setup-icon { font-size: 48px; opacity: 0.4; }
     .setup-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
     .setup-desc { font-size: 11px; color: var(--text2); line-height: 1.8; max-width: 420px; }
-
-    .setup-steps {
-      width: 100%;
-      max-width: 480px;
-      background: var(--surface);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 20px 24px;
-      text-align: left;
-    }
+    .setup-steps { width: 100%; max-width: 480px; background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 20px 24px; text-align: left; }
     .setup-steps-title { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-    .setup-step {
-      display: flex;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--text2);
-      line-height: 1.6;
-    }
+    .setup-step { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text2); line-height: 1.6; }
     .setup-step:last-child { border-bottom: none; }
-    .step-num {
-      min-width: 18px;
-      height: 18px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      border-radius: 2px;
-      font-size: 9px;
-      font-weight: 500;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .step-num { min-width: 18px; height: 18px; background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent); border-radius: 2px; font-size: 9px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
     .setup-step a { color: var(--blue); text-decoration: none; }
     .setup-step a:hover { text-decoration: underline; }
     .setup-step code { background: var(--surface2); border: 1px solid var(--border2); padding: 1px 5px; border-radius: 2px; color: var(--accent); font-size: 10px; }
-
-    .client-id-row {
-      display: flex;
-      gap: 8px;
-      width: 100%;
-      max-width: 480px;
-    }
-    .client-id-input {
-      flex: 1;
-      padding: 10px 14px;
-      background: var(--surface);
-      border: 1px solid var(--border2);
-      color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      border-radius: 2px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .client-id-row { display: flex; gap: 8px; width: 100%; max-width: 480px; }
+    .client-id-input { flex: 1; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; border-radius: 2px; outline: none; transition: border-color 0.2s; }
     .client-id-input:focus { border-color: var(--accent); }
     .client-id-input::placeholder { color: var(--muted); }
-    .save-btn {
-      padding: 10px 20px;
-      border: 1.5px solid var(--accent);
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
+    .save-btn { padding: 10px 20px; border: 1.5px solid var(--accent); background: var(--accent-dim); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; white-space: nowrap; }
     .save-btn:hover { background: rgba(0,229,176,0.15); }
 
-    /* Empty / loading states */
-    .state-msg {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 200px;
-      gap: 12px;
-      color: var(--muted);
-    }
+    .state-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px; gap: 12px; color: var(--muted); }
     .state-msg-icon { font-size: 32px; opacity: 0.4; }
     .state-msg-text { font-size: 11px; letter-spacing: 0.1em; }
-    .spinner {
-      width: 20px; height: 20px;
-      border: 2px solid var(--border2);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
+    .spinner { width: 20px; height: 20px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── TIME MARKERS ── */
-    .time-section-label {
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 12px 0 4px;
-    }
+    .time-section-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); padding: 12px 0 4px; }
 
-    /* ── EVENT CARDS ── */
-    .event-card {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.15s;
-      position: relative;
-    }
+    .event-card { display: flex; gap: 0; border: 1px solid var(--border); background: var(--surface); border-radius: 2px; overflow: hidden; transition: border-color 0.2s, transform 0.15s; position: relative; }
     .event-card:hover { border-color: var(--border2); transform: translateX(2px); }
     .event-card.now { border-color: var(--accent); background: var(--accent-dim); }
     .event-card.past { opacity: 0.4; }
-    .event-card.upcoming { border-color: var(--border2); }
-
-    .event-strip {
-      width: 3px;
-      flex-shrink: 0;
-      background: var(--blue);
-    }
+    .event-strip { width: 3px; flex-shrink: 0; background: var(--blue); }
     .event-card.now .event-strip { background: var(--accent); }
     .event-card.past .event-strip { background: var(--muted); }
-
-    .event-body {
-      flex: 1;
-      padding: 12px 16px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .event-time-col {
-      min-width: 80px;
-      flex-shrink: 0;
-    }
+    .event-body { flex: 1; padding: 12px 16px; display: flex; gap: 16px; align-items: center; }
+    .event-time-col { min-width: 80px; flex-shrink: 0; }
     .event-time-start { font-size: 13px; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
     .event-time-end { font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 1px; }
-
     .event-info { flex: 1; min-width: 0; }
     .event-title { font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .event-card.now .event-title { color: var(--accent); }
-    .event-meta {
-      display: flex;
-      gap: 10px;
-      margin-top: 4px;
-      flex-wrap: wrap;
-    }
-    .event-chip {
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 2px 6px;
-      border-radius: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 200px;
-    }
+    .event-meta { display: flex; gap: 10px; margin-top: 4px; flex-wrap: wrap; }
+    .event-chip { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 2px 6px; border-radius: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
     .event-chip.meet { color: var(--blue); border-color: rgba(74,158,255,0.3); background: var(--blue-dim); }
-
-    .event-badge {
-      flex-shrink: 0;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 2px;
-      font-weight: 500;
-    }
+    .event-badge { flex-shrink: 0; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; font-weight: 500; }
     .badge-now { background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent); }
     .badge-next { background: var(--blue-dim); border: 1px solid var(--blue); color: var(--blue); }
     .badge-soon { background: var(--surface2); border: 1px solid var(--border2); color: var(--text2); }
+    .event-progress { position: absolute; bottom: 0; left: 3px; right: 0; height: 2px; background: var(--border); }
+    .event-progress-fill { height: 100%; background: var(--accent); transition: width 60s linear; }
 
-    /* Progress bar for current event */
-    .event-progress {
-      position: absolute;
-      bottom: 0;
-      left: 3px;
-      right: 0;
-      height: 2px;
-      background: var(--border);
-    }
-    .event-progress-fill {
-      height: 100%;
-      background: var(--accent);
-      transition: width 60s linear;
-    }
-
-    /* Now line */
-    .now-line {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 0;
-    }
+    .now-line { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
     .now-line-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; box-shadow: 0 0 8px var(--accent); }
     .now-line-bar { flex: 1; height: 1px; background: var(--accent); opacity: 0.4; }
     .now-line-label { font-size: 9px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; flex-shrink: 0; }
 
-    /* All-day events */
-    .allday-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding: 4px 0;
+    .allday-row { display: flex; gap: 8px; flex-wrap: wrap; padding: 4px 0; }
+    .allday-chip { font-size: 10px; padding: 4px 10px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 2px; color: var(--text2); }
+
+    /* ── ALARM BANNER ── */
+    .alarm-banner {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      min-width: 360px;
+      max-width: 520px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .allday-chip {
-      font-size: 10px;
-      padding: 4px 10px;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      border-radius: 2px;
-      color: var(--text2);
-    }
+    .alarm-banner.show { top: 24px; }
+    .alarm-banner.warning { border: 1px solid var(--blue); }
+    .alarm-banner.starting { border: 1px solid var(--accent); }
+    .alarm-inner { padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
+    .alarm-banner.warning .alarm-inner { background: #0d1520; }
+    .alarm-banner.starting .alarm-inner { background: #0a1a14; }
+    .alarm-icon { font-size: 22px; flex-shrink: 0; }
+    .alarm-text { flex: 1; min-width: 0; }
+    .alarm-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2px; }
+    .alarm-banner.warning .alarm-label { color: var(--blue); }
+    .alarm-banner.starting .alarm-label { color: var(--accent); }
+    .alarm-title { font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .alarm-time { font-size: 10px; color: var(--text2); margin-top: 2px; }
+    .alarm-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .alarm-join-btn { padding: 6px 14px; border: 1.5px solid var(--accent); background: var(--accent-dim); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; white-space: nowrap; }
+    .alarm-join-btn:hover { background: rgba(0,229,176,0.2); }
+    .alarm-dismiss { width: 26px; height: 26px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; line-height: 1; }
+    .alarm-dismiss:hover { border-color: var(--warn); color: var(--warn); }
+    .alarm-progress { height: 2px; }
+    .alarm-banner.warning .alarm-progress { background: var(--blue); }
+    .alarm-banner.starting .alarm-progress { background: var(--accent); animation: alarmPulse 1s ease-in-out infinite; }
+    @keyframes alarmPulse { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
 
     /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border2);
-      color: var(--text2);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      padding: 10px 16px;
-      border-radius: 2px;
-      transition: opacity 0.3s, transform 0.3s;
-      opacity: 0;
-      transform: translateY(10px);
-      z-index: 100;
-      max-width: 300px;
-    }
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--surface); border: 1px solid var(--border2); color: var(--text2); font-size: 11px; letter-spacing: 0.08em; padding: 10px 16px; border-radius: 2px; transition: opacity 0.3s, transform 0.3s; opacity: 0; transform: translateY(10px); z-index: 100; max-width: 300px; }
     .toast.show { opacity: 1; transform: translateY(0); }
-
-    /* Hidden */
     .hidden { display: none !important; }
   </style>
 </head>
@@ -546,55 +207,51 @@
   <div class="glow-orb orb1"></div>
   <div class="glow-orb orb2"></div>
 
+  <!-- ── ALARM BANNER ── -->
+  <div class="alarm-banner" id="alarmBanner">
+    <div class="alarm-inner">
+      <div class="alarm-icon" id="alarmIcon">🔔</div>
+      <div class="alarm-text">
+        <div class="alarm-label" id="alarmLabel">Starting Soon</div>
+        <div class="alarm-title" id="alarmTitle">Meeting Title</div>
+        <div class="alarm-time" id="alarmTime">9:00am</div>
+      </div>
+      <div class="alarm-actions">
+        <button class="alarm-join-btn" id="alarmJoinBtn" onclick="alarmJoin()" style="display:none">Join</button>
+        <button class="alarm-dismiss" onclick="dismissAlarm()" title="Dismiss">✕</button>
+      </div>
+    </div>
+    <div class="alarm-progress" id="alarmProgress"></div>
+  </div>
+
   <div class="app">
-
-    <!-- ── LEFT PANEL ── -->
     <div class="left-panel">
-
       <div class="brand">
         <p class="label">Work Mac Guardian</p>
         <h1>Stay <span>Awake</span></h1>
       </div>
-
-      <!-- Clock -->
       <div class="clock-block">
         <div class="clock-time">
           <span id="clockH">12</span><span class="colon">:</span><span id="clockM">00</span><span class="colon">:</span><span id="clockS">00</span><span class="clock-ampm" id="clockAmpm">AM</span>
         </div>
         <div class="clock-date" id="clockDate">Monday, January 1</div>
       </div>
-
-      <!-- Wake Lock -->
       <div class="wakelock-section">
         <div class="status-pill" id="statusPill">
           <div class="status-dot" id="statusDot"></div>
           <div class="status-text" id="statusText">Inactive</div>
         </div>
-
         <div class="uptime-line">Session: <span id="uptime">00:00:00</span></div>
-
         <button class="toggle-btn" id="toggleBtn" onclick="toggle()">Activate</button>
-
         <div class="method-tag">Method: <span id="methodTag">—</span></div>
       </div>
-
-      <!-- Stats -->
       <div class="stats-row">
-        <div class="stat">
-          <div class="stat-label">Sessions</div>
-          <div class="stat-value" id="sessionCount">0</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Total hrs</div>
-          <div class="stat-value" id="totalHrs">0.0</div>
-        </div>
+        <div class="stat"><div class="stat-label">Sessions</div><div class="stat-value" id="sessionCount">0</div></div>
+        <div class="stat"><div class="stat-label">Total hrs</div><div class="stat-value" id="totalHrs">0.0</div></div>
       </div>
-
     </div>
 
-    <!-- ── RIGHT PANEL ── -->
     <div class="right-panel">
-
       <div class="cal-header">
         <div>
           <div class="cal-title">Today's Schedule</div>
@@ -606,20 +263,13 @@
           <button class="sign-out-btn" id="signOutBtn" onclick="handleSignOut()" style="display:none">Disconnect</button>
         </div>
       </div>
-
-      <div class="cal-body" id="calBody">
-        <!-- Setup or events rendered here -->
-      </div>
-
+      <div class="cal-body" id="calBody"></div>
     </div>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-  // ─────────────────────────────────────────────
-  //  CONFIG — paste your Google OAuth Client ID
-  // ─────────────────────────────────────────────
   const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
   const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 
@@ -630,9 +280,6 @@
   let calEvents = [];
   let calRefreshTimer = null;
 
-  // ─────────────────────────────────────────────
-  //  WAKE LOCK STATE
-  // ─────────────────────────────────────────────
   let wakeLock = null;
   let isActive = false;
   let startTime = null;
@@ -644,7 +291,100 @@
   const supportsWakeLock = 'wakeLock' in navigator;
   document.getElementById('methodTag').textContent = supportsWakeLock ? 'Wake Lock API' : 'Video Trick';
 
-  const ua = navigator.userAgent;
+  // ─────────────────────────────────────────────
+  //  ALARM SYSTEM
+  // ─────────────────────────────────────────────
+  // Tracks which event IDs have already triggered each alarm type
+  const firedAlarms = { warning: new Set(), starting: new Set() };
+  let alarmDismissTimer = null;
+  let currentAlarmMeetLink = null;
+  let alarmCheckInterval = null;
+
+  // Synthesize a gentle chime using Web Audio API
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.18);
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.18);
+        gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i * 0.18 + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.6);
+        osc.start(ctx.currentTime + i * 0.18);
+        osc.stop(ctx.currentTime + i * 0.18 + 0.6);
+      });
+    } catch(e) { console.warn('Audio not available:', e); }
+  }
+
+  function showAlarm(type, event) {
+    const banner = document.getElementById('alarmBanner');
+    const start = new Date(event.start.dateTime);
+    const meetLink = event.hangoutLink ||
+      (event.conferenceData?.entryPoints?.find(p => p.entryPointType === 'video')?.uri);
+
+    currentAlarmMeetLink = meetLink || null;
+
+    banner.className = 'alarm-banner ' + type;
+
+    if (type === 'warning') {
+      document.getElementById('alarmIcon').textContent = '⏰';
+      document.getElementById('alarmLabel').textContent = 'Starting in 5 minutes';
+      document.getElementById('alarmJoinBtn').style.display = 'none';
+    } else {
+      document.getElementById('alarmIcon').textContent = '🔔';
+      document.getElementById('alarmLabel').textContent = 'Starting Now';
+      document.getElementById('alarmJoinBtn').style.display = meetLink ? 'inline-block' : 'none';
+      playChime();
+    }
+
+    document.getElementById('alarmTitle').textContent = event.summary || '(No title)';
+    document.getElementById('alarmTime').textContent = fmtTime(start);
+
+    banner.classList.add('show');
+
+    // Auto-dismiss after 30s for warning, 60s for starting
+    clearTimeout(alarmDismissTimer);
+    alarmDismissTimer = setTimeout(dismissAlarm, type === 'warning' ? 30000 : 60000);
+  }
+
+  function dismissAlarm() {
+    document.getElementById('alarmBanner').classList.remove('show');
+    clearTimeout(alarmDismissTimer);
+  }
+
+  function alarmJoin() {
+    if (currentAlarmMeetLink) window.open(currentAlarmMeetLink, '_blank');
+    dismissAlarm();
+  }
+
+  function checkAlarms() {
+    if (!calEvents.length) return;
+    const now = new Date();
+    const timed = calEvents.filter(e => !!e.start?.dateTime);
+
+    timed.forEach(ev => {
+      const id = ev.id;
+      const start = new Date(ev.start.dateTime);
+      const minsUntil = (start - now) / 60000;
+
+      // 5-minute warning (silent): fire between 4.5 and 5.5 minutes out
+      if (minsUntil >= 4.5 && minsUntil < 5.5 && !firedAlarms.warning.has(id)) {
+        firedAlarms.warning.add(id);
+        showAlarm('warning', ev);
+      }
+
+      // Start-time chime: fire within 0–1 minute of start
+      if (minsUntil >= -0.5 && minsUntil < 0.5 && !firedAlarms.starting.has(id)) {
+        firedAlarms.starting.add(id);
+        showAlarm('starting', ev);
+      }
+    });
+  }
 
   // ─────────────────────────────────────────────
   //  CLOCK
@@ -664,8 +404,6 @@
     document.getElementById('clockS').textContent = s;
     document.getElementById('clockAmpm').textContent = ampm;
     document.getElementById('clockDate').textContent = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}`;
-
-    // Update calendar date label
     document.getElementById('calDateLabel').textContent =
       `${DAYS[now.getDay()]} · ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
   }
@@ -686,11 +424,7 @@
         wakeLock.addEventListener('release', () => { if (isActive) deactivate(true); });
       } catch(e) { showToast('Wake lock failed: ' + e.message); return; }
     } else { startVideoTrick(); }
-
-    isActive = true;
-    sessionCount++;
-    startTime = Date.now();
-    sessionSeconds = 0;
+    isActive = true; sessionCount++; startTime = Date.now(); sessionSeconds = 0;
     document.getElementById('sessionCount').textContent = sessionCount;
     document.body.classList.remove('sleeping');
     document.getElementById('statusPill').classList.add('active-state');
@@ -703,31 +437,25 @@
   function deactivate(auto=false) {
     if (wakeLock) { wakeLock.release().catch(()=>{}); wakeLock = null; }
     stopVideoTrick();
-    isActive = false;
-    clearInterval(timerInterval);
+    isActive = false; clearInterval(timerInterval);
     document.body.classList.add('sleeping');
     document.getElementById('statusPill').classList.remove('active-state');
     document.getElementById('statusText').textContent = 'Inactive';
     document.getElementById('toggleBtn').textContent = 'Activate';
-    if (auto) showToast('Wake lock released');
-    else showToast('Deactivated');
+    if (auto) showToast('Wake lock released'); else showToast('Deactivated');
   }
 
   function startTimer() {
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
-      sessionSeconds++;
-      totalSeconds++;
-      const h = Math.floor(sessionSeconds/3600);
-      const m = Math.floor((sessionSeconds%3600)/60);
-      const s = sessionSeconds%60;
+      sessionSeconds++; totalSeconds++;
+      const h = Math.floor(sessionSeconds/3600), m = Math.floor((sessionSeconds%3600)/60), s = sessionSeconds%60;
       document.getElementById('uptime').textContent =
         `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
       document.getElementById('totalHrs').textContent = (totalSeconds/3600).toFixed(1);
     }, 1000);
   }
 
-  // Video fallback
   let videoEl = null;
   function startVideoTrick() {
     if (videoEl) return;
@@ -753,15 +481,13 @@
   });
 
   // ─────────────────────────────────────────────
-  //  GOOGLE CALENDAR — dynamic script loading
+  //  GOOGLE CALENDAR
   // ─────────────────────────────────────────────
-
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
       const s = document.createElement('script');
-      s.src = src;
-      s.onload = resolve;
+      s.src = src; s.onload = resolve;
       s.onerror = () => reject(new Error('Failed to load: ' + src));
       document.head.appendChild(s);
     });
@@ -775,26 +501,20 @@
           const val = getter();
           if (val) { clearInterval(t); resolve(val); }
           else if (Date.now() - start > timeoutMs) { clearInterval(t); reject(new Error('Timeout: ' + label)); }
-        } catch(e) {
-          if (Date.now() - start > timeoutMs) { clearInterval(t); reject(e); }
-        }
+        } catch(e) { if (Date.now() - start > timeoutMs) { clearInterval(t); reject(e); } }
       }, intervalMs);
     });
   }
 
   async function initGoogleAPIs() {
     try {
-      // Sequential load: gapi first, GIS second
       await loadScript('https://apis.google.com/js/api.js');
       await waitFor(() => window.gapi, 'window.gapi');
-
       await loadScript('https://accounts.google.com/gsi/client');
       await waitFor(() => window.google?.accounts?.oauth2, 'google.accounts.oauth2');
-
       await new Promise((resolve, reject) => {
         gapi.load('client', { callback: resolve, onerror: () => reject(new Error('gapi.load failed')) });
       });
-
       await initGapiClient();
     } catch(e) {
       const msg = e.message || String(e);
@@ -810,32 +530,19 @@
         <div class="setup-icon">⚠️</div>
         <div class="setup-title">Script Load Failed</div>
         <div class="setup-desc" style="color:var(--warn)">
-          ${isBlock
-            ? 'Chrome blocks external scripts on <code>file://</code> URLs. Serve the file over localhost instead:'
-            : 'Unexpected error: ' + msg}
+          ${isBlock ? 'Chrome blocks external scripts on file:// URLs. Serve over localhost instead:' : 'Unexpected error: ' + msg}
         </div>
-        ${isBlock ? `
-        <div class="setup-steps" style="max-width:480px;text-align:left">
-          <div class="setup-steps-title">Fix — local server (30 seconds)</div>
-          <div class="setup-step"><div class="step-num">1</div>
-            <div>Open Terminal and run:<br><code>cd ~/Downloads && python3 -m http.server 8080</code></div>
-          </div>
-          <div class="setup-step"><div class="step-num">2</div>
-            <div>Open Chrome and visit:<br><code>http://localhost:8080/stay-awake-v2.html</code></div>
-          </div>
-          <div class="setup-step"><div class="step-num">3</div>
-            <div>In Google Cloud Console → your OAuth credential, add <code>http://localhost:8080</code> as an Authorized JavaScript Origin.</div>
-          </div>
+        ${isBlock ? `<div class="setup-steps" style="max-width:480px;text-align:left">
+          <div class="setup-steps-title">Fix — local server</div>
+          <div class="setup-step"><div class="step-num">1</div><div>Terminal: <code>cd "~/Desktop/Automations/Stay Awake" && python3 -m http.server 8080</code></div></div>
+          <div class="setup-step"><div class="step-num">2</div><div>Chrome: <code>http://localhost:8080/stay-awake-v2.html</code></div></div>
         </div>` : ''}
         <button class="save-btn" onclick="initGoogleAPIs()" style="margin-top:8px">↻ Retry</button>
       </div>`;
   }
 
   async function initGapiClient() {
-    if (!CLIENT_ID) {
-      renderSetup();
-      return;
-    }
+    if (!CLIENT_ID) { renderSetup(); return; }
     try {
       await gapi.client.init({ discoveryDocs: [DISCOVERY_DOC] });
       gapiReady = true;
@@ -846,32 +553,24 @@
         calSignedIn = true;
         updateCalUI(true);
         fetchCalendarEvents();
-      } else {
-        updateCalUI(false);
-      }
-    } catch(e) {
-      console.error('GAPI init error:', e);
-      renderSetup();
-    }
+      } else { updateCalUI(false); }
+    } catch(e) { console.error('GAPI init error:', e); renderSetup(); }
   }
 
   function setupTokenClient() {
     if (!window.google || !CLIENT_ID) return;
     tokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
+      client_id: CLIENT_ID, scope: SCOPES,
       callback: (resp) => {
         if (resp.error) { showToast('Sign-in error: ' + resp.error); return; }
         sessionStorage.setItem('gcal_token', JSON.stringify(gapi.client.getToken()));
-        calSignedIn = true;
-        updateCalUI(true);
-        fetchCalendarEvents();
+        calSignedIn = true; updateCalUI(true); fetchCalendarEvents();
       }
     });
   }
 
   function handleSignIn() {
-    if (!gapiReady || !tokenClient) { showToast('Google API not ready yet, try again in a moment'); return; }
+    if (!gapiReady || !tokenClient) { showToast('Google API not ready yet'); return; }
     tokenClient.requestAccessToken({ prompt: '' });
   }
 
@@ -880,9 +579,9 @@
     if (token) google.accounts.oauth2.revoke(token.access_token, () => {});
     gapi.client.setToken('');
     sessionStorage.removeItem('gcal_token');
-    calSignedIn = false;
-    calEvents = [];
-    clearInterval(calRefreshTimer);
+    calSignedIn = false; calEvents = [];
+    clearInterval(calRefreshTimer); clearInterval(alarmCheckInterval);
+    firedAlarms.warning.clear(); firedAlarms.starting.clear();
     updateCalUI(false);
     renderEventsEmpty('Disconnected from Google Calendar');
     showToast('Disconnected');
@@ -897,97 +596,59 @@
   async function fetchCalendarEvents() {
     if (!calSignedIn) return;
     renderLoading();
-
     const now = new Date();
     const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0).toISOString();
     const endOfDay   = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).toISOString();
-
     try {
       const response = await gapi.client.calendar.events.list({
-        calendarId: 'primary',
-        timeMin: startOfDay,
-        timeMax: endOfDay,
-        showDeleted: false,
-        singleEvents: true,
-        orderBy: 'startTime',
-        maxResults: 50,
+        calendarId: 'primary', timeMin: startOfDay, timeMax: endOfDay,
+        showDeleted: false, singleEvents: true, orderBy: 'startTime', maxResults: 50,
       });
       calEvents = response.result.items || [];
       renderEvents();
-      // Auto-refresh every 5 minutes
+
+      // Start alarm checker every 30 seconds
+      clearInterval(alarmCheckInterval);
+      alarmCheckInterval = setInterval(checkAlarms, 30000);
+      checkAlarms(); // check immediately on load
+
       clearInterval(calRefreshTimer);
       calRefreshTimer = setInterval(fetchCalendarEvents, 5 * 60 * 1000);
-      // Also re-render every minute to update "now" indicators
       clearInterval(window._calRenderTimer);
       window._calRenderTimer = setInterval(renderEvents, 60 * 1000);
     } catch(e) {
       console.error('Calendar fetch error:', e);
       if (e.status === 401) {
-        calSignedIn = false;
-        sessionStorage.removeItem('gcal_token');
-        updateCalUI(false);
-        renderEventsEmpty('Session expired — please reconnect');
+        calSignedIn = false; sessionStorage.removeItem('gcal_token');
+        updateCalUI(false); renderEventsEmpty('Session expired — please reconnect');
       } else {
         renderEventsEmpty('Failed to load events: ' + (e.result?.error?.message || e.message));
       }
     }
   }
 
-  function refreshCalendar() {
-    fetchCalendarEvents();
-    showToast('Refreshing calendar...');
-  }
+  function refreshCalendar() { fetchCalendarEvents(); showToast('Refreshing calendar...'); }
 
-  // ─────────────────────────────────────────────
-  //  RENDER HELPERS
-  // ─────────────────────────────────────────────
   function renderLoading() {
-    document.getElementById('calBody').innerHTML = `
-      <div class="state-msg">
-        <div class="spinner"></div>
-        <div class="state-msg-text">Fetching calendar...</div>
-      </div>`;
+    document.getElementById('calBody').innerHTML = `<div class="state-msg"><div class="spinner"></div><div class="state-msg-text">Fetching calendar...</div></div>`;
   }
-
   function renderEventsEmpty(msg) {
-    document.getElementById('calBody').innerHTML = `
-      <div class="state-msg">
-        <div class="state-msg-icon">📅</div>
-        <div class="state-msg-text">${msg}</div>
-      </div>`;
+    document.getElementById('calBody').innerHTML = `<div class="state-msg"><div class="state-msg-icon">📅</div><div class="state-msg-text">${msg}</div></div>`;
   }
-
   function renderSetup() {
     document.getElementById('calBody').innerHTML = `
       <div class="setup-screen">
         <div class="setup-icon">🔑</div>
         <div class="setup-title">Connect Google Calendar</div>
-        <div class="setup-desc">You need a free Google OAuth Client ID to connect your calendar. Follow the steps below — it takes about 3 minutes.</div>
-
+        <div class="setup-desc">You need a free Google OAuth Client ID to connect your calendar.</div>
         <div class="setup-steps">
           <div class="setup-steps-title">Setup Instructions</div>
-          <div class="setup-step">
-            <div class="step-num">1</div>
-            <div>Go to <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a> and create a new project (or use an existing one).</div>
-          </div>
-          <div class="setup-step">
-            <div class="step-num">2</div>
-            <div>Navigate to <strong>APIs & Services → Library</strong> and enable the <code>Google Calendar API</code>.</div>
-          </div>
-          <div class="setup-step">
-            <div class="step-num">3</div>
-            <div>Go to <strong>APIs & Services → OAuth consent screen</strong>. Set app type to <code>External</code>, fill in app name, and add your Gmail as a test user.</div>
-          </div>
-          <div class="setup-step">
-            <div class="step-num">4</div>
-            <div>Go to <strong>Credentials → Create Credentials → OAuth Client ID</strong>. Choose <code>Web application</code>. Under Authorized JavaScript Origins add <code>http://localhost:8080</code>, then serve this file with:<br><code>cd ~/Downloads && python3 -m http.server 8080</code></div>
-          </div>
-          <div class="setup-step">
-            <div class="step-num">5</div>
-            <div>Copy your Client ID (ends in <code>.apps.googleusercontent.com</code>) and paste it below.</div>
-          </div>
+          <div class="setup-step"><div class="step-num">1</div><div>Go to <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a> and create or select a project.</div></div>
+          <div class="setup-step"><div class="step-num">2</div><div>Enable the <code>Google Calendar API</code> under APIs & Services → Library.</div></div>
+          <div class="setup-step"><div class="step-num">3</div><div>Configure OAuth consent screen (External), add your Gmail as a test user.</div></div>
+          <div class="setup-step"><div class="step-num">4</div><div>Create an OAuth Client ID (Web app). Add <code>http://localhost:8080</code> as an Authorized JavaScript Origin.</div></div>
+          <div class="setup-step"><div class="step-num">5</div><div>Paste your Client ID below (ends in <code>.apps.googleusercontent.com</code>).</div></div>
         </div>
-
         <div class="client-id-row">
           <input class="client-id-input" id="clientIdInput" type="text" placeholder="your-client-id.apps.googleusercontent.com" value="${CLIENT_ID}"/>
           <button class="save-btn" onclick="saveClientId()">Connect</button>
@@ -997,9 +658,7 @@
 
   function saveClientId() {
     const val = document.getElementById('clientIdInput').value.trim();
-    if (!val || !val.includes('.apps.googleusercontent.com')) {
-      showToast('Please enter a valid Client ID'); return;
-    }
+    if (!val || !val.includes('.apps.googleusercontent.com')) { showToast('Please enter a valid Client ID'); return; }
     CLIENT_ID = val;
     localStorage.setItem('gcal_client_id', val);
     showToast('Client ID saved — initializing...');
@@ -1008,11 +667,9 @@
 
   function renderEvents() {
     if (!calEvents.length) { renderEventsEmpty('No events today — enjoy the free time!'); return; }
-
     const now = new Date();
     const body = document.getElementById('calBody');
     let html = '';
-
     const allDay = calEvents.filter(e => !e.start?.dateTime);
     const timed  = calEvents.filter(e => !!e.start?.dateTime);
 
@@ -1033,7 +690,6 @@
       const isNext = !isPast && !isNow && !nextMarked;
       if (isNext) nextMarked = true;
 
-      // Insert "now" line before first future or current event
       if (!nowLineInserted && (isNow || (!isPast && i > 0))) {
         html += `<div class="now-line"><div class="now-line-dot"></div><div class="now-line-bar"></div><div class="now-line-label">Now</div></div>`;
         nowLineInserted = true;
@@ -1087,7 +743,6 @@
     if (!nowLineInserted) {
       html = `<div class="now-line"><div class="now-line-dot"></div><div class="now-line-bar"></div><div class="now-line-label">Now</div></div>` + html;
     }
-
     body.innerHTML = html;
   }
 
@@ -1102,23 +757,14 @@
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // ─────────────────────────────────────────────
-  //  TOAST
-  // ─────────────────────────────────────────────
   let toastT;
   function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.textContent = msg; t.classList.add('show');
     clearTimeout(toastT);
     toastT = setTimeout(() => t.classList.remove('show'), 3200);
   }
 
-  // ─────────────────────────────────────────────
-  //  BOOT
-  // ─────────────────────────────────────────────
-  // Show setup screen immediately if no client ID stored,
-  // then kick off the Google API loader in parallel.
   if (!CLIENT_ID) renderSetup();
   initGoogleAPIs();
   </script>
